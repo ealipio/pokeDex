@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Pokemon } from "src/app/shared/models/pokemon";
+import { PokeListItem } from "src/app/shared/models/pokemon";
 import { RouterModule } from "@angular/router";
 
 @Component({
@@ -11,7 +11,6 @@ import { RouterModule } from "@angular/router";
   styleUrls: ["./pokemon-card.component.css"],
 })
 export class PokemonCardComponent {
-  @Input() pokemon!: Pokemon;
-  @Input() index!: number;
+  @Input() pokemon!: PokeListItem;
   constructor() {}
 }

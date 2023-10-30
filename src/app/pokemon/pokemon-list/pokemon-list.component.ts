@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { PokemonCardComponent } from "src/app/shared/pokemon-card/pokemon-card.component";
 import { PokemonService } from "src/app/shared/pokemon-service/pokemon.service";
-import { PageResponse, Pokemon } from "src/app/shared/models/pokemon";
+import { PageResponse, PokeListItem } from "src/app/shared/models/pokemon";
 import { Observable } from "rxjs";
 
 @Component({
@@ -14,11 +14,24 @@ import { Observable } from "rxjs";
 })
 export class PokemonListComponent implements OnInit {
   pokemonList$?: Observable<PageResponse>;
-  pokemons!: Pokemon[];
+  pokemons$?: Observable<PokeListItem[]>;
+  pokemonsData$?: Observable<any>;
+
   constructor(readonly pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     this.pokemonList$ = this.pokemonService.getByPage();
-    this.pokemons = this.pokemonService.pokemons;
+  }
+
+  changePage(url: string) {
+    const newUrl = new URL(url);
+    const params = newUrl.searchParams;
+    const offset = params.get("offset");
+    const limit = params.get("limit");
+
+    this.pokemonList$ = this.pokemonService.getByPage(
+      offset ?? "1",
+      limit ?? "2",
+    );
   }
 }

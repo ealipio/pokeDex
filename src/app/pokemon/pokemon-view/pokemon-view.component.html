@@ -1,4 +1,13 @@
 <article class="pokemon-detail" *ngIf="pokemon$ | async as pokemon">
   <!-- img -->
-  <p>{{ pokemon.name }}</p>
+  <h2>{{ pokemon.name }}</h2>
+  <img
+    src="{{ pokemon.sprites?.front_default }}"
+    width="500"
+    alt="{{ pokemon.name }}"
+  />
+
+  <p>
+    <a href="/">go back</a>
+  </p>
 </article>

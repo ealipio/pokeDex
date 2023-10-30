@@ -1,15 +1,14 @@
-export interface Pokemon {
-  name: string;
-}
-
-export interface PokeList {
+export type PokeDetails = {
+  sprites: { front_default: string };
+};
+export type PokeListItem = Partial<PokeDetails> & {
   name: string;
   url: string;
-}
+};
 
 export interface PageResponse {
   count: number;
   next: string;
   previous: string;
-  results: PokeList;
+  results: PokeListItem[];
 }

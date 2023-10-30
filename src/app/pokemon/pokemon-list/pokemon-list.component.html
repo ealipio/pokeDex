@@ -2,13 +2,20 @@
   <h2 class="title">pokemon-list</h2>
 </section>
 <article class="pokemon-list">
-  <div *ngIf="pokemonList$ | async as list">
-    <!-- <p *ngFor="let pokemon of list.results"></p> -->
-  </div>
+  <ul *ngIf="pokemons$ | async as pokemons">
+    <li *ngFor="let pokemon of pokemons">{{ pokemon.name }}</li>
+  </ul>
 
-  <pokemon-card
-    *ngFor="let pokemon of pokemons; let i = index"
-    [pokemon]="pokemon"
-    [index]="i"
-  ></pokemon-card>
+  <div *ngIf="pokemonList$ | async as list">
+    <p>{{ list.count }}</p>
+    <p>{{ list.next }}</p>
+
+    <pokemon-card
+      *ngFor="let pokemon of list.results"
+      [pokemon]="pokemon"
+    ></pokemon-card>
+
+    <button (click)="changePage(list.previous)">previous</button>
+    <button (click)="changePage(list.next)">next</button>
+  </div>
 </article>

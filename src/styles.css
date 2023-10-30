@@ -3,3 +3,8 @@ body{
   background: #333;
   color: #FFF;
 }
+
+
+a, a:active, a:visited{
+  color: peru;
+}
