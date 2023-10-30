@@ -1,0 +1,23 @@
+.evolution{
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+.go-back-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid #3498db;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.go-back-link:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+  color: #fff;
+}

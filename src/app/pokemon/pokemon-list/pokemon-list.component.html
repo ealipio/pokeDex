@@ -1,21 +1,28 @@
-<section class="pokemon-section">
-  <h2 class="title">pokemon-list</h2>
-</section>
-<article class="pokemon-list">
-  <ul *ngIf="pokemons$ | async as pokemons">
-    <li *ngFor="let pokemon of pokemons">{{ pokemon.name }}</li>
-  </ul>
+<div *ngIf="pokemonList$ | async as list" class="pagination">
+  <button
+    class="pagination-button"
+    *ngIf="list.previous"
+    (click)="changePage(list.previous)"
+  >
+    previous
+  </button>
+  <button class="pagination-button" (click)="changePage(list.next)">
+    next
+  </button>
+</div>
 
-  <div *ngIf="pokemonList$ | async as list">
-    <p>{{ list.count }}</p>
-    <p>{{ list.next }}</p>
-
+<article class="">
+  <div
+    *ngIf="pokemonList$ | async as list; else loadingTemplate"
+    class="card-list-container"
+  >
     <pokemon-card
       *ngFor="let pokemon of list.results"
       [pokemon]="pokemon"
     ></pokemon-card>
-
-    <button (click)="changePage(list.previous)">previous</button>
-    <button (click)="changePage(list.next)">next</button>
   </div>
 </article>
+
+<ng-template #loadingTemplate>
+  <div class="loading">Loading...</div>
+</ng-template>

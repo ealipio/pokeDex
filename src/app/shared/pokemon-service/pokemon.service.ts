@@ -13,9 +13,13 @@ export class PokemonService {
 
   getByPage(
     offset: string = "1",
-    limit: string = "2",
+    limit: string = "10",
   ): Observable<PageResponse> {
-    const params = new HttpParams().set("offset", offset).set("limit", limit);
+    const newLimit = Number(limit) <= 1 ? 10 : limit;
+
+    const params = new HttpParams()
+      .set("offset", offset)
+      .set("limit", newLimit);
 
     return this.http.get<PageResponse>(this.apiUrl, { params }).pipe(
       mergeMap((response: PageResponse) => {
@@ -33,8 +37,6 @@ export class PokemonService {
 
         return forkJoin(requests).pipe(
           map((pokemonDetails) => {
-            console.log(pokemonDetails);
-
             return {
               ...response,
               results: pokemonDetails,
@@ -46,16 +48,26 @@ export class PokemonService {
   }
 
   getById(name: string): Observable<PokeListItem> {
-    return this.http
-      .get<PokeListItem>(`https://pokeapi.co/api/v2/pokemon/${name}`)
-      .pipe(
-        map((response) => {
-          console.log(response);
-
-          return response;
-        }),
-      );
+    return this.http.get<PokeListItem>(`${this.apiUrl}/${name}`).pipe(
+      mergeMap((response) => {
+        return this.http.get<any>(response.species?.url ?? "").pipe(
+          mergeMap((specie) => {
+            return this.http.get<any>(specie.evolution_chain.url).pipe(
+              map((item) => {
+                return {
+                  ...response,
+                  evolution: {
+                    previousEvolution: item.chain.evolves_to.at().species.name,
+                    base: item.chain.species.name,
+                    fullyEvolved: item.chain.evolves_to.at().evolves_to.at()
+                      .species.name,
+                  },
+                };
+              }),
+            );
+          }),
+        );
+      }),
+    );
   }
-
-  // https://pokeapi.co/api/v2/evolution-chain/1/
 }

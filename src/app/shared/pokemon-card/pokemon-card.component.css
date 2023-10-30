@@ -1,0 +1,29 @@
+:host{
+  color: black;
+}
+
+.pokemon-card img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.pokemon-card{
+  background-color: #f3f3f3;
+  width: 300px;
+  padding: 15px;
+  background-color: #fff;
+
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.pokemon-card p {
+  font-size: 2.5rem;
+  color: #333;
+}
+.pokemon-headline{
+  text-align: center;
+}
+a{
+  text-decoration: none;
+}

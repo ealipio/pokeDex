@@ -1,0 +1,37 @@
+.card-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loading{
+  text-align: center;
+  font-size: 2rem;
+}
+.pagination{
+  text-align: center;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.pagination-button {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f3f3f3;
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-button:hover {
+  background-color: #e0e0e0;
+}

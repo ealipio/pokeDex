@@ -1,7 +1,15 @@
 <article class="pokemon-card">
+  <a href="/details/{{ pokemon.name }}">
+    <img
+      src="{{ pokemon.sprites?.front_default }}"
+      alt=""
+      width="300"
+      loading="lazy"
+    />
+  </a>
   <p class="pokemon-headline">
-    {{ pokemon.name }} Here
-    <a href="/details/{{ pokemon.name }}">More Details</a>
+    <a href="/details/{{ pokemon.name }}">
+      {{ pokemon.name }}
+    </a>
   </p>
-  <img src="{{ pokemon.sprites?.front_default }}" alt="" width="300" />
 </article>

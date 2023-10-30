@@ -1,13 +1,29 @@
 <article class="pokemon-detail" *ngIf="pokemon$ | async as pokemon">
-  <!-- img -->
-  <h2>{{ pokemon.name }}</h2>
+  <div>
+    <a class="go-back-link" href="/">go back</a>
+  </div>
+
   <img
     src="{{ pokemon.sprites?.front_default }}"
     width="500"
     alt="{{ pokemon.name }}"
   />
 
-  <p>
-    <a href="/">go back</a>
-  </p>
+  <h2>Evolution chain of {{ pokemon.name }}:</h2>
+  <ul>
+    <li>
+      Previous evolution:
+      <span class="evolution">{{ pokemon.evolution?.previousEvolution }}</span>
+    </li>
+    <li>
+      Evolution base:<span class="evolution">{{
+        pokemon.evolution?.base
+      }}</span>
+    </li>
+    <li>
+      Fully Evolution:<span class="evolution">{{
+        pokemon.evolution?.fullyEvolved
+      }}</span>
+    </li>
+  </ul>
 </article>
