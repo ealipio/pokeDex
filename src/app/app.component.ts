@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterOutlet } from "@angular/router";
 import { PokemonListComponent } from "./pokemon/pokemon-list/pokemon-list.component";
-import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   selector: "app-root",

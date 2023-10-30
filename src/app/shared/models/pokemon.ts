@@ -1,6 +1,8 @@
+type Species = { name: string; url: string };
+
 export type PokeDetails = {
   sprites: { front_default: string };
-  species: { name: string; url: string };
+  species: Species;
   evolution: { previousEvolution: string; fullyEvolved: string; base: string };
 };
 export type PokeListItem = Partial<PokeDetails> & {

@@ -11,10 +11,7 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
-  getByPage(
-    offset: string = "1",
-    limit: string = "10",
-  ): Observable<PageResponse> {
+  getByPage(offset = "1", limit = "10"): Observable<PageResponse> {
     const newLimit = Number(limit) <= 1 ? 10 : limit;
 
     const params = new HttpParams()

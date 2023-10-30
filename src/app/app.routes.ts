@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
 import { PokemonListComponent } from "./pokemon/pokemon-list/pokemon-list.component";
-import { PokemonViewComponent } from "./pokemon/pokemon-view/pokemon-view.component";
 
 export const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "list" },

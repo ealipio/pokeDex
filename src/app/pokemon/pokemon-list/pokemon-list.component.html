@@ -16,10 +16,10 @@
     *ngIf="pokemonList$ | async as list; else loadingTemplate"
     class="card-list-container"
   >
-    <pokemon-card
+    <app-pokemon-card
       *ngFor="let pokemon of list.results"
       [pokemon]="pokemon"
-    ></pokemon-card>
+    ></app-pokemon-card>
   </div>
 </article>
 

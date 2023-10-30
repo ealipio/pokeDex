@@ -4,7 +4,7 @@ import { PokeListItem } from "src/app/shared/models/pokemon";
 import { RouterModule } from "@angular/router";
 
 @Component({
-  selector: "pokemon-card",
+  selector: "app-pokemon-card",
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: "./pokemon-card.component.html",
@@ -12,5 +12,4 @@ import { RouterModule } from "@angular/router";
 })
 export class PokemonCardComponent {
   @Input() pokemon!: PokeListItem;
-  constructor() {}
 }
