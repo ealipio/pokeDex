@@ -1,11 +1,14 @@
 <section class="pokemon-section">
-  <h2 class="title">pokemon-list works!</h2>
+  <h2 class="title">pokemon-list</h2>
 </section>
 <article class="pokemon-list">
-  <ul>
-    <li>
-      Name
-      <p>Description</p>
-    </li>
-  </ul>
+  <div *ngIf="pokemonList$ | async as list">
+    <!-- <p *ngFor="let pokemon of list.results"></p> -->
+  </div>
+
+  <pokemon-card
+    *ngFor="let pokemon of pokemons; let i = index"
+    [pokemon]="pokemon"
+    [index]="i"
+  ></pokemon-card>
 </article>
