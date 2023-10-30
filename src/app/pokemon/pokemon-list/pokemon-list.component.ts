@@ -23,15 +23,7 @@ export class PokemonListComponent implements OnInit {
 
   changePage(url: string) {
     if (url) {
-      const newUrl = new URL(url);
-      const params = newUrl.searchParams;
-      const offset = params.get("offset");
-      const limit = params.get("limit");
-
-      this.pokemonList$ = this.pokemonService.getByPage(
-        offset ?? "1",
-        limit ?? "2",
-      );
+      this.pokemonList$ = this.pokemonService.getByPage(url);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, map, mergeMap, forkJoin } from "rxjs";
 import { PageResponse, PokeListItem } from "src/app/shared/models/pokemon";
@@ -8,17 +8,17 @@ import { PageResponse, PokeListItem } from "src/app/shared/models/pokemon";
 })
 export class PokemonService {
   private apiUrl = "https://pokeapi.co/api/v2/pokemon";
+  private defaultPageUrl = `${this.apiUrl}?offset=1&limit=10`;
 
   constructor(private http: HttpClient) {}
 
-  getByPage(offset = "1", limit = "10"): Observable<PageResponse> {
-    const newLimit = Number(limit) <= 1 ? 10 : limit;
+  getByPage(url = this.defaultPageUrl): Observable<PageResponse> {
+    const newUrl = new URL(url);
+    const offset = newUrl.searchParams.get("offset");
 
-    const params = new HttpParams()
-      .set("offset", offset)
-      .set("limit", newLimit);
+    const apiUrl = Number(offset) ? url : this.defaultPageUrl;
 
-    return this.http.get<PageResponse>(this.apiUrl, { params }).pipe(
+    return this.http.get<PageResponse>(apiUrl).pipe(
       mergeMap((response: PageResponse) => {
         const requests: Observable<PokeListItem>[] = response.results.map(
           (pokemon: PokeListItem) =>
